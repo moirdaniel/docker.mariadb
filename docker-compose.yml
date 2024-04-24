@@ -1,0 +1,19 @@
+version: '3.7' # Utiliza la versión 3.7 de la especificación de Docker Compose
+
+services:
+  mariadb:
+    image: mariadb:latest # Utiliza la imagen oficial de MariaDB
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'tu_contraseña_segura' # Establece la contraseña del usuario root
+      MYSQL_DATABASE: 'nombre_de_tu_base_de_datos' # Crea una base de datos al iniciar
+      MYSQL_USER: 'usuario_de_bd' # Crea un usuario
+      MYSQL_PASSWORD: 'contraseña_de_usuario' # Establece la contraseña para el usuario
+    volumes:
+      - ./mariadb_data:/var/lib/mysql # Monta el directorio para la persistencia de datos
+    ports:
+      - '3306:3306' # Expone el puerto 3306 en el host
+
+networks:
+  default:
+    driver: bridge
